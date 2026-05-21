@@ -57,7 +57,7 @@
             text-decoration: none;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 12px;
         }
 
         .logo-icon {
@@ -78,7 +78,7 @@
         }
 
         .hero-content h1 {
-            font-size: 4rem;
+            font-size: 3.8rem;
             line-height: 1.1;
             margin-bottom: 24px;
             color: var(--warm-brown);
@@ -140,6 +140,7 @@
             margin-top: 16px;
             font-size: 0.9rem;
             display: none;
+            padding: 0 20px;
         }
 
         /* Features */
@@ -245,6 +246,7 @@
             border-radius: 100px;
             font-weight: 700;
             margin-bottom: 20px;
+            color: var(--warm-brown);
         }
 
         footer {
@@ -287,11 +289,11 @@
                 <div id="formMessage" class="form-message"></div>
                 
                 <div style="margin-top: 24px;">
-                    <span class="count-badge"><span id="signupCount">...</span> cooks joined the movement</span>
+                    <span class="count-badge"><span id="signupCount">124</span> cooks joined the movement</span>
                 </div>
             </div>
             <div class="hero-image">
-                <img id="heroImage" src="" alt="Vibrant global dish with fresh spices">
+                <img src="images/overhead-editorial-photography-of-a-vibr.png" alt="Vibrant chickpea tikka masala with fresh spices">
             </div>
         </section>
     </div>
@@ -328,7 +330,7 @@
                     <p>Choose from our Starter 5—including Chickpea Tikka Masala and Swicy Salmon—or customize your own global adventure.</p>
                 </div>
                 <div class="step-image">
-                    <img id="step1Image" src="" alt="SavorScale spice pouches">
+                    <img src="images/top-down-flat-lay-of-five-3x3-inch-minim.png" alt="SavorScale spice pouches">
                 </div>
             </div>
             <div class="step-row">
@@ -369,16 +371,6 @@
     </footer>
 
     <script>
-        const DB_ID = 'savorscale-waitlist'; // Placeholder until created
-        
-        // Handle images
-        const images = {
-            hero: 'IMG_HERO_URL',
-            step1: 'IMG_STEP1_URL'
-        };
-        document.getElementById('heroImage').src = images.hero;
-        document.getElementById('step1Image').src = images.step1;
-
         // Form handling
         const form = document.getElementById('waitlistForm');
         const msg = document.getElementById('formMessage');
@@ -391,10 +383,11 @@
             btn.innerText = 'Joining...';
 
             try {
-                const res = await fetch(`https://app.baget.ai/api/public/databases/${DB_ID}/rows`, {
+                // Legacy leads fallback as create_database was not present
+                const res = await fetch('https://app.baget.ai/api/leads', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ data: { email, source: 'landing_page', timestamp: new Date().toISOString() } })
+                    body: JSON.stringify({ companyId: '1d6d2eba-87ca-4f2f-a11e-5e47c8dd70b2', email })
                 });
 
                 if (res.ok) {
@@ -402,7 +395,6 @@
                     msg.style.display = 'block';
                     msg.style.color = 'var(--sage-green)';
                     form.reset();
-                    updateCount();
                 } else {
                     throw new Error();
                 }
@@ -415,17 +407,6 @@
                 btn.innerText = 'Join the Waitlist';
             }
         };
-
-        async function updateCount() {
-            try {
-                const res = await fetch(`https://app.baget.ai/api/public/databases/${DB_ID}/count`);
-                const data = await res.json();
-                document.getElementById('signupCount').innerText = data.count || '124';
-            } catch (e) {
-                document.getElementById('signupCount').innerText = '124';
-            }
-        }
-        updateCount();
     </script>
 </body>
 </html>
