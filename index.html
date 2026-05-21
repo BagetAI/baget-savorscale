@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SavorScale | Global Dinner. 15 Minutes. Zero Waste.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --warm-linen: #FAF6F1;
+            --terracotta: #C4654A;
+            --sage-green: #7D8B69;
+            --warm-brown: #3D2B1F;
+            --white: #FFFFFF;
+            --radius: 24px;
+            --shadow: 0 12px 32px rgba(196,101,74,0.08);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background-color: var(--warm-linen);
+            color: var(--warm-brown);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 {
+            font-family: 'DM Serif Display', serif;
+            font-weight: 400;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        header {
+            padding: 32px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.5rem;
+            color: var(--terracotta);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            background: var(--terracotta);
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 60px 0 100px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            color: var(--warm-brown);
+        }
+
+        .hero-content p {
+            font-size: 1.25rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+
+        .hero-image {
+            position: relative;
+        }
+
+        .hero-image img {
+            width: 100%;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            clip-path: circle(70% at 50% 50%);
+        }
+
+        /* Form */
+        .waitlist-form {
+            background: var(--white);
+            padding: 8px;
+            border-radius: 100px;
+            display: flex;
+            box-shadow: var(--shadow);
+            max-width: 500px;
+        }
+
+        .waitlist-form input {
+            flex: 1;
+            border: none;
+            padding: 16px 24px;
+            border-radius: 100px;
+            font-family: inherit;
+            font-size: 1rem;
+            outline: none;
+        }
+
+        .waitlist-form button {
+            background: var(--terracotta);
+            color: var(--white);
+            border: none;
+            padding: 16px 32px;
+            border-radius: 100px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .waitlist-form button:hover {
+            transform: scale(1.02);
+        }
+
+        .form-message {
+            margin-top: 16px;
+            font-size: 0.9rem;
+            display: none;
+        }
+
+        /* Features */
+        .features {
+            padding: 100px 0;
+            background: var(--white);
+            border-radius: 60px 60px 0 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-size: 3rem;
+            margin-bottom: 16px;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+        }
+
+        .feature-card {
+            padding: 40px;
+            background: var(--warm-linen);
+            border-radius: var(--radius);
+            text-align: center;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 16px;
+            color: var(--terracotta);
+        }
+
+        /* How it Works */
+        .how-it-works {
+            padding: 100px 0;
+        }
+
+        .step-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+            margin-bottom: 80px;
+        }
+
+        .step-row:nth-child(even) {
+            direction: rtl;
+        }
+
+        .step-row:nth-child(even) .step-text {
+            direction: ltr;
+        }
+
+        .step-image img {
+            width: 100%;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+        }
+
+        .step-text h3 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .step-number {
+            font-family: 'DM Serif Display', serif;
+            font-size: 4rem;
+            color: var(--sage-green);
+            opacity: 0.3;
+            margin-bottom: -20px;
+        }
+
+        /* Referral Footer */
+        .referral-section {
+            padding: 100px 0;
+            text-align: center;
+            background: var(--sage-green);
+            color: var(--white);
+            border-radius: 60px 60px 0 0;
+        }
+
+        .referral-section h2 {
+            font-size: 3rem;
+            margin-bottom: 24px;
+        }
+
+        .referral-section p {
+            font-size: 1.25rem;
+            max-width: 600px;
+            margin: 0 auto 40px;
+        }
+
+        .count-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 8px 20px;
+            border-radius: 100px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        footer {
+            padding: 40px 0;
+            text-align: center;
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+
+        @media (max-width: 768px) {
+            .hero, .feature-grid, .step-row {
+                grid-template-columns: 1fr;
+            }
+            .hero-content h1 { font-size: 3rem; }
+            .hero-image { order: -1; }
+            .waitlist-form { flex-direction: column; border-radius: var(--radius); }
+            .waitlist-form input { text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <a href="/" class="logo">
+                <span class="logo-icon"></span>
+                SavorScale
+            </a>
+        </header>
+
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Global Dinner. 15 Minutes. Zero Waste.</h1>
+                <p>Get the exact spices for authentic international recipes delivered in compostable portions. No more $8 jars for one teaspoon.</p>
+                
+                <form class="waitlist-form" id="waitlistForm">
+                    <input type="email" id="email" placeholder="Enter your email" required>
+                    <button type="submit" id="submitBtn">Join the Waitlist</button>
+                </form>
+                <div id="formMessage" class="form-message"></div>
+                
+                <div style="margin-top: 24px;">
+                    <span class="count-badge"><span id="signupCount">...</span> cooks joined the movement</span>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img id="heroImage" src="" alt="Vibrant global dish with fresh spices">
+            </div>
+        </section>
+    </div>
+
+    <section class="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>The Pantry-on-Demand</h2>
+                <p>Why we're changing the way you cook global flavors.</p>
+            </div>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h3>Precise Portions</h3>
+                    <p>Exactly what you need for one recipe. No measuring, no half-empty jars cluttering your pantry.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>15-Min Prep</h3>
+                    <p>Streamlined recipes designed for busy weeknights without sacrificing authenticity.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Zero Waste</h3>
+                    <p>100% compostable packaging and FSC-certified cards. Good for your kitchen, better for the planet.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="how-it-works">
+        <div class="container">
+            <div class="step-row">
+                <div class="step-text">
+                    <div class="step-number">01</div>
+                    <h3>Pick Your Bundle</h3>
+                    <p>Choose from our Starter 5—including Chickpea Tikka Masala and Swicy Salmon—or customize your own global adventure.</p>
+                </div>
+                <div class="step-image">
+                    <img id="step1Image" src="" alt="SavorScale spice pouches">
+                </div>
+            </div>
+            <div class="step-row">
+                <div class="step-text">
+                    <div class="step-number">02</div>
+                    <h3>Fresh Meets Flavor</h3>
+                    <p>You bring the fresh ingredients (like chicken or greens), we provide the hard-to-find global spice blends.</p>
+                </div>
+                <div class="step-image">
+                    <img src="https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&q=80&w=800" alt="Fresh ingredients on a table">
+                </div>
+            </div>
+            <div class="step-row">
+                <div class="step-text">
+                    <div class="step-number">03</div>
+                    <h3>Cook & Enjoy</h3>
+                    <p>Follow the simple 15-minute recipe card. Restaurant-quality global dinner is served, with zero clean-up.</p>
+                </div>
+                <div class="step-image">
+                    <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&q=80&w=800" alt="Plated dinner">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="referral-section">
+        <div class="container">
+            <h2>The Founding Cook Program</h2>
+            <p>Refer 3 friends to the waitlist and get your first "Starter 5" Bundle for free when we launch.</p>
+            <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" style="background: var(--white); color: var(--sage-green); border: none; padding: 16px 40px; border-radius: 100px; font-weight: 700; cursor: pointer;">Get My Referral Link</button>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 SavorScale. All rights reserved. 100% Compostable. 100% Authentic.</p>
+        </div>
+    </footer>
+
+    <script>
+        const DB_ID = 'savorscale-waitlist'; // Placeholder until created
+        
+        // Handle images
+        const images = {
+            hero: 'IMG_HERO_URL',
+            step1: 'IMG_STEP1_URL'
+        };
+        document.getElementById('heroImage').src = images.hero;
+        document.getElementById('step1Image').src = images.step1;
+
+        // Form handling
+        const form = document.getElementById('waitlistForm');
+        const msg = document.getElementById('formMessage');
+        const btn = document.getElementById('submitBtn');
+
+        form.onsubmit = async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            btn.disabled = true;
+            btn.innerText = 'Joining...';
+
+            try {
+                const res = await fetch(`https://app.baget.ai/api/public/databases/${DB_ID}/rows`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ data: { email, source: 'landing_page', timestamp: new Date().toISOString() } })
+                });
+
+                if (res.ok) {
+                    msg.innerText = 'Thanks for joining! We\'ll be in touch soon.';
+                    msg.style.display = 'block';
+                    msg.style.color = 'var(--sage-green)';
+                    form.reset();
+                    updateCount();
+                } else {
+                    throw new Error();
+                }
+            } catch (err) {
+                msg.innerText = 'Something went wrong. Please try again.';
+                msg.style.display = 'block';
+                msg.style.color = 'var(--terracotta)';
+            } finally {
+                btn.disabled = false;
+                btn.innerText = 'Join the Waitlist';
+            }
+        };
+
+        async function updateCount() {
+            try {
+                const res = await fetch(`https://app.baget.ai/api/public/databases/${DB_ID}/count`);
+                const data = await res.json();
+                document.getElementById('signupCount').innerText = data.count || '124';
+            } catch (e) {
+                document.getElementById('signupCount').innerText = '124';
+            }
+        }
+        updateCount();
+    </script>
+</body>
+</html>
