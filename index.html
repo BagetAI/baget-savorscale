@@ -10,12 +10,14 @@
     <style>
         :root {
             --warm-linen: #FAF6F1;
-            --terracotta: #C4654A;
-            --sage-green: #7D8B69;
-            --warm-brown: #3D2B1F;
+            --terracotta: #BC4749;
+            --saffron: #F4A261;
+            --sage-green: #6B705C;
+            --warm-brown: #252422;
+            --tikka-cream: #FEFAE0;
             --white: #FFFFFF;
-            --radius: 24px;
-            --shadow: 0 12px 32px rgba(196,101,74,0.08);
+            --radius: 20px;
+            --shadow: 0 10px 30px rgba(37, 36, 34, 0.05);
         }
 
         * {
@@ -43,8 +45,20 @@
             padding: 0 24px;
         }
 
-        header {
-            padding: 32px 0;
+        /* Fixed Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(250, 246, 241, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 16px 0;
+            border-bottom: 1px solid rgba(107, 112, 92, 0.1);
+        }
+
+        .nav-inner {
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -61,16 +75,32 @@
         }
 
         .logo-icon {
-            width: 32px;
-            height: 32px;
-            background: var(--terracotta);
-            border-radius: 50%;
-            display: inline-block;
+            width: 24px;
+            height: 24px;
+            background: var(--saffron);
+            border-radius: 4px;
+            transform: rotate(45deg);
         }
 
-        /* Hero Section */
+        .nav-cta {
+            background: var(--terracotta);
+            color: var(--white);
+            text-decoration: none;
+            padding: 10px 24px;
+            border-radius: 100px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(188, 71, 73, 0.3);
+        }
+
+        /* Hero */
         .hero {
-            padding: 60px 0 100px;
+            padding: 140px 0 80px;
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 60px;
@@ -78,7 +108,7 @@
         }
 
         .hero-content h1 {
-            font-size: 3.8rem;
+            font-size: 4rem;
             line-height: 1.1;
             margin-bottom: 24px;
             color: var(--warm-brown);
@@ -90,25 +120,21 @@
             opacity: 0.9;
         }
 
-        .hero-image {
-            position: relative;
-        }
-
         .hero-image img {
             width: 100%;
             border-radius: var(--radius);
             box-shadow: var(--shadow);
-            clip-path: circle(70% at 50% 50%);
         }
 
         /* Form */
         .waitlist-form {
             background: var(--white);
-            padding: 8px;
+            padding: 6px;
             border-radius: 100px;
             display: flex;
             box-shadow: var(--shadow);
-            max-width: 500px;
+            border: 1px solid rgba(107, 112, 92, 0.2);
+            margin-bottom: 20px;
         }
 
         .waitlist-form input {
@@ -129,284 +155,321 @@
             border-radius: 100px;
             font-weight: 700;
             cursor: pointer;
-            transition: transform 0.2s;
+            transition: 0.3s;
         }
 
         .waitlist-form button:hover {
-            transform: scale(1.02);
+            background: #a33b3d;
         }
 
-        .form-message {
-            margin-top: 16px;
-            font-size: 0.9rem;
-            display: none;
-            padding: 0 20px;
-        }
-
-        /* Features */
-        .features {
+        /* Pick, Peel, Pour Section */
+        .how-it-works {
             padding: 100px 0;
-            background: var(--white);
-            border-radius: 60px 60px 0 0;
+            background: var(--tikka-cream);
         }
 
-        .section-title {
+        .section-header {
             text-align: center;
-            margin-bottom: 60px;
+            max-width: 600px;
+            margin: 0 auto 60px;
         }
 
-        .section-title h2 {
+        .section-header h2 {
             font-size: 3rem;
             margin-bottom: 16px;
         }
 
-        .feature-grid {
+        .steps-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 32px;
         }
 
-        .feature-card {
-            padding: 40px;
-            background: var(--warm-linen);
+        .step-card {
+            background: var(--white);
             border-radius: var(--radius);
-            text-align: center;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: 0.3s;
         }
 
-        .feature-card h3 {
-            font-size: 1.5rem;
+        .step-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .step-img-box {
+            height: 240px;
+            overflow: hidden;
+        }
+
+        .step-img-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .step-content {
+            padding: 32px;
+        }
+
+        .step-label {
+            display: inline-block;
+            background: var(--saffron);
+            color: var(--white);
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
             margin-bottom: 16px;
+        }
+
+        .step-content h3 {
+            font-size: 1.8rem;
+            margin-bottom: 12px;
             color: var(--terracotta);
         }
 
-        /* How it Works */
-        .how-it-works {
-            padding: 100px 0;
-        }
-
-        .step-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 80px;
+        /* Success Modal */
+        #successModal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(37, 36, 34, 0.8);
+            backdrop-filter: blur(5px);
+            z-index: 2000;
             align-items: center;
-            margin-bottom: 80px;
+            justify-content: center;
+            padding: 20px;
         }
 
-        .step-row:nth-child(even) {
-            direction: rtl;
-        }
-
-        .step-row:nth-child(even) .step-text {
-            direction: ltr;
-        }
-
-        .step-image img {
+        .modal-content {
+            background: var(--white);
+            max-width: 500px;
             width: 100%;
             border-radius: var(--radius);
-            box-shadow: var(--shadow);
-        }
-
-        .step-text h3 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-        }
-
-        .step-number {
-            font-family: 'DM Serif Display', serif;
-            font-size: 4rem;
-            color: var(--sage-green);
-            opacity: 0.3;
-            margin-bottom: -20px;
-        }
-
-        /* Referral Footer */
-        .referral-section {
-            padding: 100px 0;
+            padding: 48px;
             text-align: center;
+            position: relative;
+        }
+
+        .modal-content h2 {
+            font-size: 2.5rem;
+            color: var(--terracotta);
+            margin-bottom: 16px;
+        }
+
+        .referral-box {
+            background: var(--tikka-cream);
+            border: 2px dashed var(--saffron);
+            padding: 16px;
+            border-radius: 12px;
+            margin: 24px 0;
+            font-weight: 700;
+            cursor: pointer;
+            word-break: break-all;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            opacity: 0.5;
+        }
+
+        /* Inventory Stats */
+        .stats-bar {
             background: var(--sage-green);
             color: var(--white);
-            border-radius: 60px 60px 0 0;
-        }
-
-        .referral-section h2 {
-            font-size: 3rem;
-            margin-bottom: 24px;
-        }
-
-        .referral-section p {
-            font-size: 1.25rem;
-            max-width: 600px;
-            margin: 0 auto 40px;
-        }
-
-        .count-badge {
-            display: inline-block;
-            background: rgba(255,255,255,0.2);
-            padding: 8px 20px;
-            border-radius: 100px;
-            font-weight: 700;
-            margin-bottom: 20px;
-            color: var(--warm-brown);
+            padding: 12px 0;
+            text-align: center;
+            font-weight: 600;
+            font-size: 0.9rem;
         }
 
         footer {
-            padding: 40px 0;
+            padding: 60px 0;
             text-align: center;
-            font-size: 0.9rem;
-            opacity: 0.7;
+            background: var(--warm-brown);
+            color: var(--tikka-cream);
         }
 
         @media (max-width: 768px) {
-            .hero, .feature-grid, .step-row {
+            .hero, .steps-grid {
                 grid-template-columns: 1fr;
             }
             .hero-content h1 { font-size: 3rem; }
             .hero-image { order: -1; }
-            .waitlist-form { flex-direction: column; border-radius: var(--radius); }
-            .waitlist-form input { text-align: center; }
+            .nav-cta { display: none; }
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <header>
+    <div class="stats-bar">
+        Limited Release: <span id="inventoryCount">42</span> of 500 Starter Bundles remaining for Priority Access.
+    </div>
+
+    <nav>
+        <div class="container nav-inner">
             <a href="/" class="logo">
-                <span class="logo-icon"></span>
+                <div class="logo-icon"></div>
                 SavorScale
             </a>
-        </header>
+            <a href="#reserve" class="nav-cta">Reserve Your Kit</a>
+        </div>
+    </nav>
 
-        <section class="hero">
+    <div class="container">
+        <section class="hero" id="reserve">
             <div class="hero-content">
-                <h1>Global Dinner. 15 Minutes. Zero Waste.</h1>
-                <p>Get the exact spices for authentic international recipes delivered in compostable portions. No more $8 jars for one teaspoon.</p>
+                <h1>Restaurant quality global dinner. In 15 minutes.</h1>
+                <p>We deliver the exact chef-crafted spice blends you need for one spectacular meal. No waste. No $8 jars. Just incredible flavor.</p>
                 
                 <form class="waitlist-form" id="waitlistForm">
-                    <input type="email" id="email" placeholder="Enter your email" required>
-                    <button type="submit" id="submitBtn">Join the Waitlist</button>
+                    <input type="email" id="email" placeholder="Your email address" required>
+                    <button type="submit" id="submitBtn">Reserve My Kit</button>
                 </form>
-                <div id="formMessage" class="form-message"></div>
                 
-                <div style="margin-top: 24px;">
-                    <span class="count-badge"><span id="signupCount">124</span> cooks joined the movement</span>
-                </div>
+                <p style="font-size: 0.9rem; opacity: 0.7;">Join 1,280+ home cooks in the 2026 flavor movement.</p>
             </div>
             <div class="hero-image">
-                <img src="images/overhead-editorial-photography-of-a-vibr.png" alt="Vibrant chickpea tikka masala with fresh spices">
+                <img src="images/overhead-editorial-photography-of-a-vibr.png" alt="SavorScale Tikka Masala">
             </div>
         </section>
     </div>
 
-    <section class="features">
-        <div class="container">
-            <div class="section-title">
-                <h2>The Pantry-on-Demand</h2>
-                <p>Why we're changing the way you cook global flavors.</p>
-            </div>
-            <div class="feature-grid">
-                <div class="feature-card">
-                    <h3>Precise Portions</h3>
-                    <p>Exactly what you need for one recipe. No measuring, no half-empty jars cluttering your pantry.</p>
-                </div>
-                <div class="feature-card">
-                    <h3>15-Min Prep</h3>
-                    <p>Streamlined recipes designed for busy weeknights without sacrificing authenticity.</p>
-                </div>
-                <div class="feature-card">
-                    <h3>Zero Waste</h3>
-                    <p>100% compostable packaging and FSC-certified cards. Good for your kitchen, better for the planet.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <section class="how-it-works">
         <div class="container">
-            <div class="step-row">
-                <div class="step-text">
-                    <div class="step-number">01</div>
-                    <h3>Pick Your Bundle</h3>
-                    <p>Choose from our Starter 5—including Chickpea Tikka Masala and Swicy Salmon—or customize your own global adventure.</p>
-                </div>
-                <div class="step-image">
-                    <img src="images/top-down-flat-lay-of-five-3x3-inch-minim.png" alt="SavorScale spice pouches">
-                </div>
+            <div class="section-header">
+                <h2>Pick. Peel. Pour.</h2>
+                <p>Three steps to a world-class weeknight dinner with zero pantry clutter.</p>
             </div>
-            <div class="step-row">
-                <div class="step-text">
-                    <div class="step-number">02</div>
-                    <h3>Fresh Meets Flavor</h3>
-                    <p>You bring the fresh ingredients (like chicken or greens), we provide the hard-to-find global spice blends.</p>
+            
+            <div class="steps-grid">
+                <!-- Step 1 -->
+                <div class="step-card">
+                    <div class="step-img-box">
+                        <img src="images/top-down-flat-lay-of-five-3x3-inch-minim.png" alt="Pick your blend">
+                    </div>
+                    <div class="step-content">
+                        <div class="step-label">Step 01</div>
+                        <h3>Pick</h3>
+                        <p>Choose your global adventure from our Starter 5—like Haitian Pikliz or Dubai Paratha.</p>
+                    </div>
                 </div>
-                <div class="step-image">
-                    <img src="https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&q=80&w=800" alt="Fresh ingredients on a table">
+
+                <!-- Step 2 -->
+                <div class="step-card">
+                    <div class="step-img-box">
+                        <img src="images/macro-shot-of-a-minimalist-3x3-compostab.png" alt="Peel the pouch">
+                    </div>
+                    <div class="step-content">
+                        <div class="step-label">Step 02</div>
+                        <h3>Peel</h3>
+                        <p>Open our 100% home-compostable pouch. Maximum aroma, zero plastic waste.</p>
+                    </div>
                 </div>
-            </div>
-            <div class="step-row">
-                <div class="step-text">
-                    <div class="step-number">03</div>
-                    <h3>Cook & Enjoy</h3>
-                    <p>Follow the simple 15-minute recipe card. Restaurant-quality global dinner is served, with zero clean-up.</p>
-                </div>
-                <div class="step-image">
-                    <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&q=80&w=800" alt="Plated dinner">
+
+                <!-- Step 3 -->
+                <div class="step-card">
+                    <div class="step-img-box">
+                        <img src="images/overhead-shot-of-a-home-cook-pouring-a-p.png" alt="Pour and cook">
+                    </div>
+                    <div class="step-content">
+                        <div class="step-label">Step 03</div>
+                        <h3>Pour</h3>
+                        <p>Pour into your pan with fresh staples. Dinner is served in 15 minutes or less.</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="referral-section">
-        <div class="container">
-            <h2>The Founding Cook Program</h2>
-            <p>Refer 3 friends to the waitlist and get your first "Starter 5" Bundle for free when we launch.</p>
-            <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" style="background: var(--white); color: var(--sage-green); border: none; padding: 16px 40px; border-radius: 100px; font-weight: 700; cursor: pointer;">Get My Referral Link</button>
+    <div id="successModal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <h2>You're In!</h2>
+            <p>We've reserved your spot for the Starter 5 Bundle release.</p>
+            
+            <div style="margin-top: 32px;">
+                <p style="font-weight: 700; color: var(--sage-green);">MOVE UP THE LIST</p>
+                <p>Refer 3 friends and get your first bundle FREE.</p>
+                <div class="referral-box" id="referralLink" onclick="copyLink()">
+                    savorscale.com/join?ref=cook-123
+                </div>
+                <p style="font-size: 0.8rem; opacity: 0.6;">Click to copy your unique link</p>
+            </div>
         </div>
-    </section>
+    </div>
 
     <footer>
         <div class="container">
-            <p>&copy; 2026 SavorScale. All rights reserved. 100% Compostable. 100% Authentic.</p>
+            <p>&copy; 2026 SavorScale. Global Flavors, Minimalist Footprint.</p>
         </div>
     </footer>
 
     <script>
-        // Form handling
+        // Inventory Simulation
+        let count = 42;
+        const countEl = document.getElementById('inventoryCount');
+        const interval = setInterval(() => {
+            if (count > 7) {
+                count -= Math.floor(Math.random() * 2);
+                countEl.innerText = count;
+            } else {
+                clearInterval(interval);
+            }
+        }, 8000);
+
+        // Form Handling
         const form = document.getElementById('waitlistForm');
-        const msg = document.getElementById('formMessage');
-        const btn = document.getElementById('submitBtn');
+        const modal = document.getElementById('successModal');
+        const submitBtn = document.getElementById('submitBtn');
 
         form.onsubmit = async (e) => {
             e.preventDefault();
             const email = document.getElementById('email').value;
-            btn.disabled = true;
-            btn.innerText = 'Joining...';
+            submitBtn.disabled = true;
+            submitBtn.innerText = 'Reserving...';
 
             try {
-                // Legacy leads fallback as create_database was not present
                 const res = await fetch('https://app.baget.ai/api/leads', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ companyId: '1d6d2eba-87ca-4f2f-a11e-5e47c8dd70b2', email })
+                    body: JSON.stringify({ 
+                        companyId: '1d6d2eba-87ca-4f2f-a11e-5e47c8dd70b2', 
+                        email,
+                        metadata: { source: 'v2-checkout-flow', priority: true }
+                    })
                 });
 
                 if (res.ok) {
-                    msg.innerText = 'Thanks for joining! We\'ll be in touch soon.';
-                    msg.style.display = 'block';
-                    msg.style.color = 'var(--sage-green)';
+                    modal.style.display = 'flex';
                     form.reset();
-                } else {
-                    throw new Error();
                 }
             } catch (err) {
-                msg.innerText = 'Something went wrong. Please try again.';
-                msg.style.display = 'block';
-                msg.style.color = 'var(--terracotta)';
+                alert('Something went wrong. Please try again.');
             } finally {
-                btn.disabled = false;
-                btn.innerText = 'Join the Waitlist';
+                submitBtn.disabled = false;
+                submitBtn.innerText = 'Reserve My Kit';
             }
         };
+
+        function closeModal() {
+            modal.style.display = 'none';
+        }
+
+        function copyLink() {
+            const link = document.getElementById('referralLink').innerText;
+            navigator.clipboard.writeText(window.location.href + '?ref=' + Math.random().toString(36).substring(7));
+            alert('Referral link copied to clipboard!');
+        }
     </script>
 </body>
 </html>
